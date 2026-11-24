@@ -1,8 +1,9 @@
-# For this project, I downloaded Spotify data from Kaggle.
-# Then I created a table to insert Spotify data into.
-# Finally, I performed analytics on the data using SQL. 
+-- Spotify Track Analysis
+-- For this project, I downloaded Spotify data from Kaggle.
+-- Then I created a table to insert Spotify data into.
+-- Finally, I performed analytics on the data using SQL.
 
-#Creating the table: 
+-- Creating the table:
 CREATE TABLE BIT_DB.Spotifydata (
 id integer PRIMARY KEY,
 artist_name varchar NOT NULL,
@@ -21,14 +22,14 @@ liveness decimal(5,4) NOT NULL,
 valence decimal(4,3) NOT NULL,
 tempo decimal(6,3) NOT NULL,
 duration_ms integer NOT NULL,
-time_signature integer NOT NULL 
+time_signature integer NOT NULL
 )
 
-#Then I inserted the Spotify Data .csv into the table.
+-- Then I inserted the Spotify Data .csv into the table.
 
-#Next, I explored the data using the following SQL. 
+-- Next, I explored the data using the following SQL.
 
-#First I determined the avg popularity, danceability, and energy by artist and track. 
+-- First I determined the avg popularity, danceability, and energy by artist and track.
 SELECT
 artist_name
 ,track_name
@@ -38,7 +39,7 @@ artist_name
 FROM BIT_DB.spotifydata
 GROUP BY artist_name, track_name
 
-#Then I determined who the Top 10 artists are by popularity
+-- Then I found the top 10 tracks by popularity.
 SELECT track_name, artist_name, popularity
 FROM BIT_DB.spotifydata
 ORDER BY popularity desc
