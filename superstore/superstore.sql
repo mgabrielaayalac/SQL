@@ -1,4 +1,5 @@
-#This project utilizes the following Superstore data: 
+-- Superstore Pricing Analysis
+-- This project utilizes the following Superstore data:
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -26,20 +27,18 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-#For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
+-- For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices.
 
-#Use a SELECT statement to order the items by price.
+-- Use a SELECT statement to order the items by price.
 SELECT item_name, price
 FROM superstore
 ORDER BY price desc;
 
-#Show a statistic about the item prices.
+-- Show a statistic about the item prices.
 SELECT avg(price)
 FROM superstore;
 
-#Show a statistic about the price for items in the category of "Kitchen Supplies". 
+-- Show a statistic about the price for items in the category of "Kitchen Supplies".
 SELECT avg(price)
 FROM superstore
 WHERE category="Kitchen Supplies"
-
-    
