@@ -1,4 +1,5 @@
-#This analysis utilized the following Fortune 500 dataset:
+-- Fortune 500 Benefits Analysis
+-- Dataset: company revenue, headcount and employee benefits.
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
@@ -58,12 +59,10 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
-#This analysis utilized the following Fortune 500 dataset:
-
-#1. Assign all the companies in the Healthcare industry as "mother friendly workplace", "acceptable", or "abysmal" based on the maternity leave offered. 
+-- 1. Assign all the companies in the Healthcare industry as "mother friendly workplace", "acceptable", or "abysmal" based on the maternity leave offered.
 SELECT
 company_name,
-CASE 
+CASE
   WHEN maternity_leave_weeks >= 10 THEN 'mother friendly workplace'
   WHEN maternity_leave_weeks >= 8 THEN 'acceptable'
   ELSE 'abysmal'
@@ -72,10 +71,7 @@ FROM fortune_companies
 WHERE industry='Healthcare'
 ;
 
-
-
-
-#2.Which industries have an average revenue of at least $200 Billion, and what are their avg revenues?
+-- 2. Which industries have an average revenue of at least $200 Billion, and what are their avg revenues?
 
 SELECT industry, ROUND(AVG(revenue),1) as avg_revenue_billions
 FROM fortune_companies
@@ -83,15 +79,16 @@ GROUP BY industry
 HAVING avg_revenue_billions>=200
 ;
 
-# 3.Which companies have healthcare benefits *and* at least 20 paid time off days?
+-- 3. Which companies have healthcare benefits *and* at least 20 paid time off days?
 SELECT company_name
 FROM fortune_companies
-WHERE paid_time_off_days>20
+WHERE paid_time_off_days>=20
 AND healthcare_benefits=1
 ;
 
-# 4.Which company in the Retail industry has the least revenue, and what's their revenue? 
-SELECT company_name, min(revenue)
+-- 4. Which company in the Retail industry has the least revenue, and what's their revenue?
+SELECT company_name, revenue
 FROM fortune_companies
 WHERE industry = 'Retail'
-;
+ORDER BY revenue ASC
+LIMIT 1;
